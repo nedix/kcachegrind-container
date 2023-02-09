@@ -60,8 +60,8 @@ docker compose -f docker-compose.yml -f docker-compose-kcachegrind.yml up -d
 
 ### Step 2.
 
-Navigate to your page on [http://localhost:8000](localhost:8000) to capture the profiling data.
+Navigate to your page on [localhost:8000](http://localhost:8000) to capture the profiling data.
 
 ### Step 3.
 
-Find KCachegrind on [http://localhost:8001](localhost:8001).
+Find KCachegrind on [localhost:8001](http://localhost:8001).
