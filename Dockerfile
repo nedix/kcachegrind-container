@@ -1,5 +1,3 @@
-ARG FILEBROWSER_VERSION=v2.23.0
-
 FROM golang:1.20-bullseye AS build-easy-novnc
 
 ARG EASY_NOVNC_VERSION=v1.1.0
