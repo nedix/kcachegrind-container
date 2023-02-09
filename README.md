@@ -1,6 +1,12 @@
 # kcachegrind-docker
 
-## Setup
+A Docker image for the [KCachegrind](https://github.com/KDE/kcachegrind)
+profiling tool with browser accessibility. The example from this readme
+describes how to use it together with Xdebug for PHP.
+
+## Example
+
+### Setup
 
 *docker-compose-kcachegrind.yml*
 
@@ -32,7 +38,7 @@ services:
       - nginx-xdebug
 
   kcachegrind:
-    image: kcachegrind
+    image: ghcr.io/nedix/kcachegrind-docker
     ports:
       - 8001:8080
     volumes:
@@ -44,11 +50,15 @@ services:
 volumes:
   app:
     driver: local
+    driver_opts:
+      device: ${PWD}
+      o: bind
+      type: none
   xdebug:
     driver: local
 ```
 
-## Usage
+### Usage
 
 ### Step 1.
 
