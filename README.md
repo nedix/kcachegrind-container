@@ -19,7 +19,7 @@ services:
     environment:
       NGINX_VHOST_PRESET: php
       NGINX_BACKEND_HOST: xdebug
-      NGINX_SERVER_ROOT: '${NGINX_SERVER_ROOT:-/var/www/html/public_html}'
+      NGINX_SERVER_ROOT: '${NGINX_SERVER_ROOT:-/var/www/html/public}'
     ports:
       - 8000:80
     volumes:
