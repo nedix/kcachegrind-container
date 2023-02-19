@@ -28,9 +28,9 @@ services:
   xdebug:
     image: wodby/php:8.1-dev
     environment:
-      - PHP_DEBUG=true
-      - PHP_XDEBUG=true
-      - PHP_XDEBUG_MODE=profile
+      PHP_DEBUG: true
+      PHP_XDEBUG: true
+      PHP_XDEBUG_MODE: profile
     volumes:
       - app:/var/www/html
       - xdebug:/mnt/files/xdebug
