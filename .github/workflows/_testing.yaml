@@ -1,10 +1,10 @@
-name: Feature testing
+name: Testing
 
 on:
   workflow_call:
 
 jobs:
-  integration:
+  e2e:
     runs-on: ubuntu-latest
 
     steps:
