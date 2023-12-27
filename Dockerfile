@@ -1,6 +1,10 @@
-FROM golang:1.20-bullseye AS build-easy-novnc
-
+ARG DEBIAN_VERSION=bullseye
 ARG EASY_NOVNC_VERSION=v1.1.0
+ARG GO_VERSION=1.20
+
+FROM golang:${GO_VERSION}-${DEBIAN_VERSION} AS build-easy-novnc
+
+ARG EASY_NOVNC_VERSION
 
 WORKDIR /src
 
@@ -8,7 +12,7 @@ RUN go mod init build \
     && go get github.com/geek1011/easy-novnc@${EASY_NOVNC_VERSION} \
     && go build -o /bin/easy-novnc github.com/geek1011/easy-novnc
 
-FROM debian:bullseye
+FROM debian:${DEBIAN_VERSION}-slim
 
 RUN apt update \
     && apt install -y --no-install-recommends \
