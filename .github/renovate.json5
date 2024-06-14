@@ -26,13 +26,13 @@
       matchStrings: ["ARG GO_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "docker",
       depNameTemplate: "golang",
-    }
+    },
   ],
   packageRules: [
     {
       description: "Disable grouping for all dependencies",
       matchPackagePatterns: [".*"],
       groupName: null,
-    }
+    },
   ],
 }
