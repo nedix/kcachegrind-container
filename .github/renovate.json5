@@ -4,9 +4,10 @@
     "/^release\\/.*/",
   ],
   enabledManagers: [
-    "regex",
+    "custom.regex",
+    "github-actions",
   ],
-  regexManagers: [
+  customManagers: [
     {
       fileMatch: ["^Dockerfile$"],
       matchStrings: ["ARG DEBIAN_VERSION=(?<currentValue>.*?)\\n"],
@@ -29,9 +30,9 @@
   ],
   packageRules: [
     {
-      description: "Disable grouping for regex managed dependencies",
-      matchDepTypes: ["regex"],
-      groupName: null
+      description: "Disable grouping for all dependencies",
+      matchPackagePatterns: [".*"],
+      groupName: null,
     }
   ],
 }
