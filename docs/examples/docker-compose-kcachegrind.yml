@@ -1,0 +1,43 @@
+services:
+  nginx-xdebug:
+    image: wodby/nginx:1.19
+    environment:
+      NGINX_VHOST_PRESET: php
+      NGINX_BACKEND_HOST: xdebug
+      NGINX_SERVER_ROOT: /var/www/html/public
+    ports:
+      - 81:80
+    volumes:
+      - app:/var/www/html
+
+  xdebug:
+    image: wodby/php:8.1-dev
+    environment:
+      PHP_DEBUG: true
+      PHP_XDEBUG: true
+      PHP_XDEBUG_MODE: profile
+    volumes:
+      - app:/var/www/html
+      - xdebug:/mnt/files/xdebug
+    depends_on:
+      - nginx-xdebug
+
+  kcachegrind:
+    image: ghcr.io/nedix/kcachegrind-docker
+    ports:
+      - 82:8080
+    volumes:
+      - app:/var/www/html
+      - xdebug:/data/xdebug
+    depends_on:
+      - xdebug
+
+volumes:
+  app:
+    driver: local
+    driver_opts:
+      device: ${PWD}
+      o: bind
+      type: none
+  xdebug:
+    driver: local

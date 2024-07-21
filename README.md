@@ -1,85 +1,38 @@
 # [kcachegrind]-docker
 
-Web interface for [KCachegrind]. Can be used with Xdebug to give insight into performance metrics of PHP applications.
+Web interface for KCachegrind.
+
+Can be used with Xdebug to gain insights into performance metrics of PHP applications.
 
 ## Setup
 
-#### Create a Docker Compose manifest
+**Download the Docker Compose manifest**
 
-This example Docker Compose manifest expects that you have your main application services defined in `docker-compose.yml`.
-It will listen for requests on port `81` and `82`.
-
-*docker-compose-kcachegrind.yml*
-
-```yaml
-services:
-  nginx-xdebug:
-    image: wodby/nginx:1.19
-    environment:
-      NGINX_VHOST_PRESET: php
-      NGINX_BACKEND_HOST: xdebug
-      NGINX_SERVER_ROOT: /var/www/html/public
-    ports:
-      - 81:80
-    volumes:
-      - app:/var/www/html
-
-  xdebug:
-    image: wodby/php:8.1-dev
-    environment:
-      PHP_DEBUG: true
-      PHP_XDEBUG: true
-      PHP_XDEBUG_MODE: profile
-    volumes:
-      - app:/var/www/html
-      - xdebug:/mnt/files/xdebug
-    depends_on:
-      - nginx-xdebug
-
-  kcachegrind:
-    image: ghcr.io/nedix/kcachegrind-docker
-    ports:
-      - 82:8080
-    volumes:
-      - app:/var/www/html
-      - xdebug:/data/xdebug
-    depends_on:
-      - xdebug
-
-volumes:
-  app:
-    driver: local
-    driver_opts:
-      device: ${PWD}
-      o: bind
-      type: none
-  xdebug:
-    driver: local
+```shell
+wget https://raw.githubusercontent.com/nedix/kubernetes-exporter-docker/main/docs/examples/docker-compose-kcachegrind.yml
 ```
 
 ## Usage
 
-#### Start the services
+**Start the services**
 
 ```shell
-docker compose -f docker-compose.yml -f docker-compose-kcachegrind.yml up -d
+docker compose -f docker-compose-kcachegrind.yml up
 ```
 
-#### Capture a profiling report
+**Capture a profiling report**
 
-Navigate to any page on http://127.0.0.1:81 to capture the profiling report.
+- Navigate to any page on http://127.0.0.1:81 to capture a profiling report
 
-#### Get insight into performance
+**View performance data of your application**
 
-Navigate to the [KCachegrind] web interface on http://127.0.0.1:82.
-
-<hr>
+- Browse to the KCachegrind web interface on http://127.0.0.1:82
+- Open a profiling report from the `/data` directory
 
 ## Attribution
 
-Powered by [easy-novnc], [KCachegrind], [OpenboxWM] and [TigerVNC].
+- [easy-novnc] [(License)](https://raw.githubusercontent.com/pgaskin/easy-novnc/master/LICENSE.md)
+- [KCachegrind] [(License)](https://github.com/KDE/kcachegrind/tree/master/LICENSES)
 
 [easy-novnc]: https://github.com/pgaskin/easy-novnc
 [KCachegrind]: https://github.com/KDE/kcachegrind
-[OpenboxWM]: https://github.com/danakj/openbox
-[TigerVNC]: https://github.com/TigerVNC/tigervnc
