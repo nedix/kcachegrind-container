@@ -1,7 +1,7 @@
 setup:
 	@docker build . -t kcachegrind
 
-up: detach =
+up: PORT = 1234
 up:
-	@docker run --rm $(if $(detach),-d,) -p 1234:8080 --name kcachegrind \
+	@docker run --rm -p $(PORT):8080 --name kcachegrind \
 		kcachegrind
