@@ -13,7 +13,7 @@ View performance metrics of C and C++ applications using valgrind with callgrind
 **1. Capture a callgrind report using valgrind**
 
 ```shell
-valgrind --tool=callgrind <your program>
+valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes <your program>
 ```
 
 **2. Start the kcachegrind service**
