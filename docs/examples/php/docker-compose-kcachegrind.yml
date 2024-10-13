@@ -6,7 +6,7 @@ services:
       NGINX_BACKEND_HOST: xdebug
       NGINX_SERVER_ROOT: /var/www/html/public
     ports:
-      - 81:80
+      - 8081:80
     volumes:
       - app:/var/www/html
 
@@ -25,7 +25,7 @@ services:
   kcachegrind:
     image: ghcr.io/nedix/kcachegrind-docker
     ports:
-      - 82:8080
+      - 8082:8080
     volumes:
       - app:/var/www/html
       - xdebug:/data/xdebug
