@@ -6,7 +6,7 @@ Web interface for KCachegrind.
 
 ## Examples
 
-### Callgrind
+### C/C++
 
 View performance metrics of C and C++ applications using valgrind with callgrind as the profiling tool.
 
