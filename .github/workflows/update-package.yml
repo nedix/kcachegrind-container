@@ -18,7 +18,7 @@ jobs:
           echo "SHORT_SHA=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
           echo "VERSION_TAG=$(git tag --points-at HEAD)" >> $GITHUB_ENV
         with:
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64/v8
           registry: ghcr.io
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
