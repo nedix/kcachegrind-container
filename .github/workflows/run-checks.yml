@@ -10,6 +10,6 @@ jobs:
     steps:
       - id: run-checks
         name: Run checks
-        uses: nedix/actions/run-checks@main
+        uses: nedix/actions/run-checks@v0.4.0
         with:
           command: ./tests/index.sh
