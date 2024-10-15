@@ -12,7 +12,7 @@ jobs:
     steps:
       - id: update-package
         name: Update package
-        uses: nedix/actions/update-package@main
+        uses: nedix/actions/update-packagev0.4.0
         with:
           platforms: linux/amd64,linux/arm64/v8
           registry: ghcr.io
