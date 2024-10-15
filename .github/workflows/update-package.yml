@@ -2,8 +2,7 @@ name: Update package
 
 on:
   push:
-    tags:
-      - '*'
+    tags: ['*']
 
 jobs:
   update-package:
