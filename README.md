@@ -1,4 +1,4 @@
-# [kcachegrind]-docker
+# [kcachegrind]-container
 
 Web interface for KCachegrind.
 
