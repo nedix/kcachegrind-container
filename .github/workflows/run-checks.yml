@@ -1,0 +1,17 @@
+name: Run checks
+
+on:
+  workflow_call:
+
+jobs:
+  run-checks:
+    name: Run checks
+    runs-on: ubuntu-latest
+    steps:
+      - id: run-checks
+        name: Run checks
+        uses: nedix/actions/run-checks@main
+        with:
+          command: |
+            docker build . -t test
+            ./tests/index.sh

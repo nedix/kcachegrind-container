@@ -1,0 +1,24 @@
+name: Update package
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  update-package:
+    name: Update package
+    runs-on: ubuntu-latest
+    steps:
+      - id: update-package
+        name: Update package
+        uses: nedix/actions/update-package@main
+        with:
+          platforms: linux/amd64
+          registry: ghcr.io
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
+          tags: |
+            ghcr.io/${{ github.repository }}:$(git rev-parse --short=7 HEAD)
+            ghcr.io/${{ github.repository }}:$(git tag --points-at HEAD)
+            ghcr.io/${{ github.repository }}:latest

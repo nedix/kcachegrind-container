@@ -1,11 +1,6 @@
 {
-  baseBranches: [
-    "main",
-    "/^release\\/.*/",
-  ],
-  enabledManagers: [
-    "custom.regex",
-    "github-actions",
+  extends: [
+    "https://raw.githubusercontent.com/nedix/actions/main/renovate.json5",
   ],
   customManagers: [
     {
@@ -26,13 +21,6 @@
       matchStrings: ["ARG GO_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "docker",
       depNameTemplate: "golang",
-    },
-  ],
-  packageRules: [
-    {
-      description: "Disable grouping for all dependencies",
-      matchPackagePatterns: [".*"],
-      groupName: null,
     },
   ],
 }
