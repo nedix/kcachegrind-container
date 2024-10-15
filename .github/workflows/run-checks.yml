@@ -12,6 +12,4 @@ jobs:
         name: Run checks
         uses: nedix/actions/run-checks@main
         with:
-          command: |
-            docker build . -t test
-            ./tests/index.sh
+          command: ./tests/index.sh
