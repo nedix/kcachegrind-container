@@ -10,19 +10,22 @@ jobs:
     name: Update package
     runs-on: ubuntu-latest
     steps:
+      - id: prepare-tags
+        name: Prepare tags
+        shell: sh
+        run: |
+          echo "short-sha=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
+          echo "version-tag=$(git tag --points-at HEAD)" >> $GITHUB_OUTPUT
+
       - id: update-package
         name: Update package
         uses: nedix/actions/update-package@main
-        shell: sh
-        run: |
-          echo "SHORT_SHA=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
-          echo "VERSION_TAG=$(git tag --points-at HEAD)" >> $GITHUB_ENV
         with:
           platforms: linux/amd64,linux/arm64/v8
           registry: ghcr.io
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
           tags: |
-            ghcr.io/${{ github.repository }}${{ env.SHORT_SHA }}
-            ghcr.io/${{ github.repository }}:${{ env.VERSION_TAG }}
-            ghcr.io/${{ github.repository }}:latest
+            ${{ format('ghcr.io/{0}:{1}', github.repository,steps.prepare-tags.outputs.short-sha) }}
+            ${{ format('ghcr.io/{0}:{1}', github.repository,steps.prepare-tags.outputs.version-tag) }}
+            ${{ format('ghcr.io/{0}:{1}', 'latest') }}
