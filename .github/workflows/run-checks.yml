@@ -5,7 +5,7 @@ on:
   pull_request_target:
     branches: ['main']
     paths-ignore: ['.github/**/*']
-    types: ['closed']
+    types: ['opened', 'reopened', 'synchronize']
   workflow_dispatch:
 
 jobs:
