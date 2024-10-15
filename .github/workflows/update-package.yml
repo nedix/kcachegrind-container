@@ -13,16 +13,8 @@ jobs:
       - id: update-package
         name: Update package
         uses: nedix/actions/update-package@main
-        shell: sh
-        run: |
-          echo "SHORT_SHA=$(git rev-parse --short=7 HEAD)" >> $GITHUB_ENV
-          echo "VERSION_TAG=$(git tag --points-at HEAD)" >> $GITHUB_ENV
         with:
           platforms: linux/amd64,linux/arm64/v8
           registry: ghcr.io
           registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
-          tags: |
-            ghcr.io/${{ github.repository }}${{ env.SHORT_SHA }}
-            ghcr.io/${{ github.repository }}:${{ env.VERSION_TAG }}
-            ghcr.io/${{ github.repository }}:latest
