@@ -34,7 +34,7 @@ docker run --rm -d -p 8080:80 -v "${PWD}:/data" --name kcachegrind nedix/kcacheg
 Gain performance insights of PHP applications using Xdebug as the profiling tool.
 
 
-**1. Download the Docker Compose manifest to your project directory**
+**1. Download the Compose manifest to your project directory**
 
 ```shell
 wget https://raw.githubusercontent.com/nedix/kcachegrind-container/main/docs/examples/php/compose-kcachegrind.yml
