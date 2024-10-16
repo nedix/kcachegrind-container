@@ -1,6 +1,6 @@
 # [kcachegrind-container](https://github.com/nedix/kcachegrind-container)
 
-KCachegrind web GUI for valgrind and xdebug.
+Web GUI for valgrind and xdebug.
 
 <img width="1511" alt="Screenshot at Oct 13 19-36-16" src="https://github.com/user-attachments/assets/dd4cc5f1-5c61-4837-95a0-4365554df631">
 
