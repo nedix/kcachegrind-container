@@ -23,7 +23,7 @@ services:
       - nginx-xdebug
 
   kcachegrind:
-    image: ghcr.io/nedix/kcachegrind-docker
+    image: nedix/kcachegrind
     ports:
       - 8082:8080
     volumes:

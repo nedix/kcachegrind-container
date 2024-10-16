@@ -19,7 +19,7 @@ valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes <your program>
 **2. Start the kcachegrind service**
 
 ```shell
-docker run --rm -d -p 8080:8080 -v "${PWD}:/data" --name kcachegrind ghcr.io/nedix/kcachegrind-container
+docker run --rm -d -p 8080:8080 -v "${PWD}:/data" --name kcachegrind nedix/kcachegrind
 ```
 
 **3. Gain insight into performance metrics of your application**
