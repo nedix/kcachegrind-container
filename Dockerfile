@@ -37,7 +37,7 @@ RUN groupadd --gid 1000 app \
     && useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app \
     && mkdir -p /data
 
-EXPOSE 8080
+EXPOSE 80
 
 VOLUME /data
 
