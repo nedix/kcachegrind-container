@@ -34,7 +34,7 @@ View performance metrics of PHP applications using xdebug as the profiling tool.
 **1. Download the Docker Compose manifest to your project directory**
 
 ```shell
-wget https://raw.githubusercontent.com/nedix/kubernetes-exporter-container/main/docs/examples/php/docker-compose-kcachegrind.yml
+wget https://raw.githubusercontent.com/nedix/kcachegrind-container/refs/heads/main/docs/examples/php/docker-compose-kcachegrind.yml
 ```
 
 **2. Start the kcachegrind service**
