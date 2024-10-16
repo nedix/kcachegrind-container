@@ -22,7 +22,7 @@ valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes <your program>
 docker run --rm -d -p 8080:80 -v "${PWD}:/data" --name kcachegrind nedix/kcachegrind
 ```
 
-**3. Gain insight into performance metrics of your C/C++ application**
+**3. Open the profiling data with KCachegrind**
 
 - Browse to the KCachegrind web interface on http://127.0.0.1:8080
 - Click on the Open button in the toolbar
@@ -50,7 +50,7 @@ docker compose -f compose-kcachegrind.yml up
 
 - Navigate to any page on http://127.0.0.1:8081 to capture a profiling report
 
-**4. Gain insight into performance metrics of your application**
+**4. Open the profiling data with KCachegrind**
 
 - Browse to the KCachegrind web interface on http://127.0.0.1:8082
 - Click on the Open button in the toolbar
