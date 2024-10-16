@@ -1,5 +1,5 @@
 setup:
-	@docker build . -t kcachegrind
+	@docker build -f Containerfile -t kcachegrind .
 
 up: PORT = 8080
 up:
