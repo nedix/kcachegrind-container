@@ -4,20 +4,20 @@
   ],
   customManagers: [
     {
-      fileMatch: ["^Dockerfile$"],
+      fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG DEBIAN_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "docker",
       depNameTemplate: "debian",
       versioningTemplate: "debian",
     },
     {
-      fileMatch: ["^Dockerfile$"],
+      fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG EASY_NOVNC_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "github-releases",
       depNameTemplate: "geek1011/easy-novnc",
     },
     {
-      fileMatch: ["^Dockerfile$"],
+      fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG GO_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "docker",
       depNameTemplate: "golang",
