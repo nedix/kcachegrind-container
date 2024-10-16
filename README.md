@@ -42,7 +42,7 @@ wget https://raw.githubusercontent.com/nedix/kcachegrind-container/refs/heads/ma
 **2. Start the KCachegrind service**
 
 ```shell
-docker compose -f docker-compose-kcachegrind.yml up
+docker compose -f compose-kcachegrind.yml up
 ```
 
 **3. Capture a profiling report with Xdebug**
