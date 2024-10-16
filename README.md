@@ -1,4 +1,4 @@
-# [kcachegrind]-container
+# [kcachegrind-container](https://github.com/nedix/kcachegrind-container)
 
 Web interface for KCachegrind.
 
