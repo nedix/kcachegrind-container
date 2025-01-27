@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+export $(/usr/bin/dbus-launch)
+export DISPLAY=:0
+export HOME=/data
+
+exec /usr/bin/kcachegrind

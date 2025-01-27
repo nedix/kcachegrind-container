@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+exec /usr/bin/Xvnc \
+    -AcceptCutText \
+    -AcceptKeyEvents \
+    -AcceptPointerEvents \
+    -AcceptSetDesktopSize \
+    -AlwaysShared \
+    -SecurityTypes="None" \
+    -SendCutText \
+    -desktop "KCachegrind" \
+    -localhost \
+    -rfbport="5900" \
+    :0

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+exec /usr/local/bin/easy-novnc \
+    --addr=":6080" \
+    --host="127.0.0.1" \
+    --no-url-password \
+    --novnc-params="resize=remote" \
+    --port="5900"

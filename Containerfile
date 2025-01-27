@@ -1,44 +1,64 @@
 ARG DEBIAN_VERSION=bookworm
 ARG EASY_NOVNC_VERSION=v1.1.0
 ARG GO_VERSION=1.23
+ARG S6_OVERLAY_VERSION=3.2.0.0
+ARG STARTUP_TIMEOUT=30
 
-FROM golang:${GO_VERSION}-${DEBIAN_VERSION} AS build-easy-novnc
+FROM debian:${DEBIAN_VERSION}-slim AS base
+
+ARG S6_OVERLAY_VERSION
+
+ARG BUILD_DEPS=" \
+    wget \
+    xz-utils \
+"
+
+RUN apt update -y \
+    && apt install -y $BUILD_DEPS \
+    && case "$(uname -m)" in \
+        aarch64|arm*) \
+            S6_OVERLAY_ARCHITECTURE="aarch64" \
+        ;; x86_64) \
+            S6_OVERLAY_ARCHITECTURE="x86_64" \
+        ;; *) echo "Unsupported architecture: $(uname -m)"; exit 1; ;; \
+    esac \
+    && wget -qO- "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz" \
+    | tar -xpJf- -C / \
+    && wget -qO- "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCHITECTURE}.tar.xz" \
+    | tar -xpJf- -C / \
+    && apt remove -y $BUILD_DEPS
+
+FROM golang:${GO_VERSION}-${DEBIAN_VERSION} AS easy-novnc
 
 ARG EASY_NOVNC_VERSION
 
-WORKDIR /src
+WORKDIR /build/easy-novnc/
 
 RUN go mod init build \
     && go get github.com/geek1011/easy-novnc@${EASY_NOVNC_VERSION} \
-    && go build -o /bin/easy-novnc github.com/geek1011/easy-novnc
+    && go build -o /build/easy-novnc/bin/ github.com/geek1011/easy-novnc
 
-FROM debian:${DEBIAN_VERSION}-slim
+FROM base
 
-RUN apt update \
-    && apt install -y --no-install-recommends \
+RUN apt update -y \
+    && apt install -y \
         breeze \
-        ca-certificates \
         dbus-x11 \
-        gosu \
         graphviz \
         kcachegrind \
         openbox \
-        supervisor \
         tigervnc-standalone-server \
-        xdg-utils \
-    && rm -rf /var/lib/apt/lists \
-    && mkdir -p /usr/share/desktop-directories
+        xdg-utils
 
-COPY --from=build-easy-novnc /bin/easy-novnc /usr/local/bin/
+COPY --from=easy-novnc /build/easy-novnc/bin/ /usr/local/bin/
 
-ADD rootfs /
+COPY /rootfs/ /
 
-RUN groupadd --gid 1000 app \
-    && useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app \
-    && mkdir -p /data
+ARG STARTUP_TIMEOUT
+ENV STARTUP_TIMEOUT="$STARTUP_TIMEOUT"
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
 
 VOLUME /data
-
-CMD ["sh", "-c", "chown app:app /data /dev/stdout && exec gosu app supervisord"]
