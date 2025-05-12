@@ -16,8 +16,10 @@ ARG BUILD_DEPS=" \
 RUN apt update -y \
     && apt install -y $BUILD_DEPS \
     && case "$(uname -m)" in \
-        aarch64|arm*) \
+        aarch64) \
             S6_OVERLAY_ARCHITECTURE="aarch64" \
+        ;; arm*) \
+            S6_OVERLAY_ARCHITECTURE="arm" \
         ;; x86_64) \
             S6_OVERLAY_ARCHITECTURE="x86_64" \
         ;; *) echo "Unsupported architecture: $(uname -m)"; exit 1; ;; \
