@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 exec /usr/local/bin/easy-novnc \
-    --addr=":8080" \
+    --addr=":80" \
     --host="127.0.0.1" \
     --no-url-password \
     --novnc-params="resize=remote" \

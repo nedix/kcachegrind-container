@@ -3,5 +3,5 @@ setup:
 
 up: PORT = 8080
 up:
-	@docker run --rm -p $(PORT):8080 --name kcachegrind \
+	@docker run --rm -p $(PORT):80 --name kcachegrind \
 		kcachegrind
