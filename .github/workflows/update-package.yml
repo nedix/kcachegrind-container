@@ -4,6 +4,12 @@ on:
   push:
     tags: ['*']
 
+permissions:
+  attestations: write
+  id-token: write
+  packages: write
+  security-events: write
+
 jobs:
   update-package:
     name: Update package
@@ -11,10 +17,10 @@ jobs:
     steps:
       - id: update-package
         name: Update package
-        uses: nedix/actions/update-package@v0.9.20
+        uses: nedix/actions/update-package@v0.12.0
         with:
           platforms: linux/amd64,linux/arm64/v8
-          registry: docker.io
-          registry_path: nedix/kcachegrind
-          registry_username: ${{ secrets.DOCKERHUB_USERNAME }}
-          registry_password: ${{ secrets.DOCKERHUB_PAT }}
+          registry: ${{ secrets.REGISTRY_DOMAIN }}
+          registry_path: ${{ secrets.REGISTRY_PATH }}
+          registry_username: ${{ secrets.REGISTRY_USERNAME }}
+          registry_password: ${{ secrets.REGISTRY_PASSWORD }}
