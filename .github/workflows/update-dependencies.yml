@@ -17,7 +17,7 @@ jobs:
     steps:
       - id: update-dependencies
         name: Update dependencies
-        uses: nedix/actions/update-dependencies@v0.11.0
+        uses: nedix/actions/update-dependencies@v0.11.1
         with:
           app_id: ${{ secrets.GH_APP_ID }}
           app_pem: ${{ secrets.GH_APP_PEM }}
