@@ -17,7 +17,7 @@ valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes <your program>
 ```
 
 
-### 2. Start the KCachegrind service
+### 2. Start the KCachegrind container
 
 ```shell
 docker run --rm --pull always --name kcachegrind \
