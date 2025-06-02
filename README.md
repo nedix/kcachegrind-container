@@ -2,7 +2,7 @@
 
 Web GUI to inspect Valgrind and Xdebug profiling reports.
 
-<img width="1511" alt="Screenshot at Oct 13 19-36-16" src="https://github.com/user-attachments/assets/dd4cc5f1-5c61-4837-95a0-4365554df631">
+![kcachegrind-hero](https://raw.githubusercontent.com/nedix/k3s-argocd-container/refs/heads/main/docs/static/hero.png)
 
 
 ## Usage with C/C++
