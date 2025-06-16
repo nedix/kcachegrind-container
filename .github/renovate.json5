@@ -46,5 +46,5 @@
       extractVersion: "^v(?<version>.*)$",
       versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$",
     },
-  ]
+  ],
 }
