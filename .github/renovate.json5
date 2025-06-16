@@ -43,6 +43,7 @@
     {
       description: "Custom versioning for s6-overlay",
       matchPackageNames: ["just-containers/s6-overlay"],
+      extractVersion: "^v(?<version>.*)$",
       versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$",
     },
   ]
