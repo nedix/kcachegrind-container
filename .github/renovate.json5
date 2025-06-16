@@ -29,7 +29,7 @@
       depNameTemplate: "s6-overlay",
       fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG S6_OVERLAY_VERSION=(?<currentValue>.*?)\\n"],
-      datasourceTemplate: "github-releases",
+      datasourceTemplate: "github-tags",
       packageNameTemplate: "just-containers/s6-overlay",
     },
   ],
