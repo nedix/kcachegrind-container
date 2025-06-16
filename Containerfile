@@ -2,7 +2,6 @@ ARG DEBIAN_VERSION=bookworm
 ARG EASY_NOVNC_VERSION=v1.1.0
 ARG GO_VERSION=1.24
 ARG S6_OVERLAY_VERSION=3.2.0.0
-ARG STARTUP_TIMEOUT=30
 
 FROM debian:${DEBIAN_VERSION}-slim AS base
 
@@ -55,9 +54,6 @@ RUN apt update -y \
 COPY --from=easy-novnc /build/easy-novnc/bin/ /usr/local/bin/
 
 COPY /rootfs/ /
-
-ARG STARTUP_TIMEOUT
-ENV STARTUP_TIMEOUT="$STARTUP_TIMEOUT"
 
 ENTRYPOINT ["/entrypoint.sh"]
 
