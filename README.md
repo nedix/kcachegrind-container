@@ -20,10 +20,13 @@ valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes <your program>
 ### 2. Start the KCachegrind container
 
 ```shell
-docker run --rm --pull always --name kcachegrind \
-  -p 127.0.0.1:80:80 \
-  -v "${PWD}:/data" \
-  nedix/kcachegrind
+docker run \
+    --name kcachegrind \
+    --pull always \
+    --rm \
+    -p 127.0.0.1:80:80 \
+    -v "${PWD}:/data" \
+    nedix/kcachegrind
 ```
 
 

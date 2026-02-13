@@ -6,8 +6,11 @@ destroy:
 
 up: HTTP_PORT = "80"
 up:
-	@docker run --rm -d --name kcachegrind \
+	@docker run \
+		--name kcachegrind \
+		--rm \
 		-p 127.0.0.1:$(HTTP_PORT):80 \
+		-d \
 		kcachegrind
 	@docker logs -f kcachegrind
 
