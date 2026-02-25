@@ -41,6 +41,11 @@
       versioning: "regex:^(?<major>\\d+)_(?<minor>\\d+)_(?<patch>\\d+)$",
     },
     {
+      description: "Custom versioning for easy-novnc",
+      matchPackageNames: ["geek1011/easy-novnc"],
+      extractVersion: "^v(?<version>.*)$",
+    },
+    {
       description: "Custom versioning for s6-overlay",
       matchPackageNames: ["just-containers/s6-overlay"],
       extractVersion: "^v(?<version>.*)$",
