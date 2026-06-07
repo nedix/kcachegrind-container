@@ -2,7 +2,7 @@
 
 Web GUI to inspect Valgrind and Xdebug profiling reports.
 
-![kcachegrind-hero](https://raw.githubusercontent.com/nedix/kcachegrind-container/refs/heads/main/docs/static/hero.png)
+![kcachegrind-hero](https://raw.githubusercontent.com/nedix/kcachegrind-container/refs/heads/main/docs/media/screenshot.png)
 
 
 ## Usage with C/C++
@@ -34,7 +34,7 @@ docker run \
 
 - Browse to the KCachegrind web interface on http://127.0.0.1:80
 - Click on the Open button in the toolbar
-- Navigate to the `/data` directory using the sidebar
+- Navigate to the `/data/` directory using the sidebar
 - Open your profiling report
 
 
@@ -46,27 +46,27 @@ Gain performance insights of PHP applications using Xdebug as the profiling tool
 ### 1. Download the Compose manifest to your project directory
 
 ```shell
-wget https://raw.githubusercontent.com/nedix/kcachegrind-container/main/docs/examples/compose-php.yml
+wget https://raw.githubusercontent.com/nedix/kcachegrind-container/main/stacks/php/compose-kcachegrind.yml
 ```
 
 
-### 2. Start the KCachegrind service
+### 2. Start the services
 
 ```shell
-docker compose -f compose-php.yml up
+docker compose -f compose-kcachegrind.yml up -d
 ```
 
 
 ### 3. Capture a profiling report with Xdebug
 
-- Navigate to any page on http://127.0.0.1:8081 to capture a profiling report
+- Navigate your web browser to any page on http://127.0.0.1:8081 to capture a profiling report
 
 
 ### 4. Open the profiling data with KCachegrind
 
-- Browse to the KCachegrind web interface on http://127.0.0.1:8082
+- Navigate your web browser to the KCachegrind web page on http://127.0.0.1:8082
 - Click on the Open button in the toolbar
-- Navigate to the `/data` directory using the sidebar
+- Navigate to the `/data` directory in the sidebar
 - Open your profiling report
 
 

@@ -1,0 +1,51 @@
+services:
+  kcachegrind-nginx:
+    image: wodby/nginx
+    pull_policy: always
+    environment:
+      NGINX_BACKEND_HOST: kcachegrind-xdebug
+      NGINX_SERVER_ROOT: "/var/www/html/${KCACHEGRIND_NGINX_PUBLIC_DIRECTORY:-public}/"
+      NGINX_VHOST_PRESET: php
+    ports:
+      - "127.0.0.1:${FORWARD_KCACHEGRIND_NGINX_PORT:-8081}:80"
+    volumes:
+      - kcachegrind-app:/var/www/html/
+    restart: unless-stopped
+
+  kcachegrind-xdebug:
+    image: wodby/php:8.1-dev
+    pull_policy: always
+    environment:
+      PHP_DEBUG: true
+      PHP_XDEBUG: true
+      PHP_XDEBUG_MODE: profile
+    volumes:
+      - kcachegrind-app:/var/www/html/
+      - kcachegrind-xdebug:/data/xdebug/
+    depends_on:
+      kcachegrind-nginx:
+        condition: service_started
+    restart: unless-stopped
+
+  kcachegrind:
+    image: nedix/kcachegrind
+    pull_policy: always
+    ports:
+      - "127.0.0.1:${FORWARD_KCACHEGRIND_PORT:-8082}:80"
+    volumes:
+      - kcachegrind-app:/var/www/html/
+      - kcachegrind-xdebug:/data/xdebug/
+    depends_on:
+      kcachegrind-xdebug:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  kcachegrind-app:
+    driver: local
+    driver_opts:
+      device: "$PWD"
+      o: bind
+      type: none
+  kcachegrind-xdebug:
+    driver: local
