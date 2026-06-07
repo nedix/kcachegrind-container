@@ -31,10 +31,9 @@ docker run \
 
 
 ### 3. Open the profiling data with KCachegrind
-
-- Browse to the KCachegrind web interface on http://127.0.0.1:80
+- Navigate your web browser to the KCachegrind web page on http://127.0.0.1:80
 - Click on the Open button in the toolbar
-- Navigate to the `/data/` directory using the sidebar
+- Navigate to the `/data` directory using the sidebar
 - Open your profiling report
 
 
